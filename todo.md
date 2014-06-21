@@ -1,0 +1,3 @@
+- [ ] Parse pdf
+- [ ] Lay out data in menu format 
+- [ ] hack the code
