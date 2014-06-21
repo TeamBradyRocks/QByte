@@ -6,7 +6,9 @@
 	<head>
 		<link rel="stylesheet" type="text/css" href="styles.css">
 		
+		<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.css" />
 		<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+		<script src="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.js"></script>
 		
 		<script>
 			// Wait until the DOM has loaded before querying the document
@@ -50,24 +52,20 @@
 			
 		jQuery(function ($) {
 			$(".more").hide();
-			$('body').on('click touchstart', '.button-read-more', function() {
+			$('.button-read-more').click(function () {
 				$(this).closest('.less').addClass('active');
 				$(this).closest(".less").next().stop(true).slideDown("500");
 			});
-			$('body').on('click touchstart', '.button-read-less', function() {
+			$('.button-read-less').click(function () {
 				$(this).closest('.less').removeClass('active');
 				$(this).closest(".less").next().stop(true).slideUp("500");
 			});
 		});
-	</script>	
-	
-	<script type='text/javascript' src='https://cdn.firebase.com/js/client/1.0.15/firebase.js'></script>
-	<script type='text/javascript' src='https://cdn.firebase.com/js/simple-login/1.6.0/firebase-simple-login.js'></script>
+		</script>
 	</head>
 
 <body>
 <div class="back">
-	<!--
 	<div data-role="panel" id="leftpanel3" data-position="left" data-display="overlay" data-theme="b" class="ui-panel ui-panel-position-left ui-panel-display-overlay ui-body-a ui-panel-animate ui-panel-closed">
 	<ul data-role="listview">
 		<li><a href="#" data-rel="close">Cafe AA</a></li>
@@ -77,76 +75,30 @@
 		<li><a href="#" data-rel="close">Cafe WT</a></li>
 	</ul>
 	</div>
-	-->
+	
 	<div class="wrapper">
+		
 		<div class="header">
 			<img src="./logo.png" alt="Logo here" />
 		</div>
+		
 		<div class="main">
-<!--		  
-		<ul class='tabs'>
-			<li><a href='#tab1'>Mon</a></li>
-			<li><a href='#tab2'>Tue</a></li>
-			<li><a href='#tab3'>Wed</a></li>
-			<li><a href='#tab4'>Thu</a></li>
-			<li><a href='#tab5'>Fri</a></li>
-		</ul>
--->
-		<p id="day1"></p>
-		<div id="toggle">
-			<div id="magic"></div>
-		<!-- Pull from Firebase and dynamically generate menu -->
-		<script>
-		 $(document).ready(function() 
-		 {
-			// get the current weekday
-			var d = new Date();
-			var weekday = new Array(7);
-			weekday[0]=  "Friday";
-			weekday[1] = "Monday";
-			weekday[2] = "Tuesday";
-			weekday[3] = "Wednesday";
-			weekday[4] = "Thursday";
-			weekday[5] = "Friday";
-			weekday[6] = "Monday";
-			
-			var day = weekday[d.getDay()];
-			document.getElementById('day1').innerHTML = "<p><center>The menu for " + day + ":</center></p>";
-			// executes when HTML-Document is loaded and DOM is ready
-			var dataRef = new Firebase('https://qbyte.firebaseio.com');
-			dataRef.on('value', function(snapshot) {
-			  var handle = snapshot.val();
-			  var handle_Cafes = Object.keys(handle);
-			  
-			  for (i=0; i<handle_Cafes.length; i++){
-				var key = handle_Cafes[i];
-				var val = handle[key];
-				var sub_key = day;
-				var sub_val = val[sub_key];
-				var myid = 'menu' + String(i);
-				var iDiv = document.createElement("div");
-				iDiv.id = myid;
-				iDiv.className = myid;
-				document.getElementById('magic').appendChild(iDiv);
-
-				var myHTML = '<div class="less"><img src="./ic_population.png" /><h1 class="button-read-more button-read" href="#read">Caf&eacute; ' + key + '</h1><h1 class="button-read-less button-read" href="#read">Caf&eacute; ' + key + '</h1></div><div class="more" id="menu-1" style="display:none"><table width="100%" border="0">';
-				
-				
-				for (j=1; j<sub_val.length; j++) {
-					var test = sub_val[j];
-					//alert(test)
-					myHTML = myHTML + '<tr><td width="20%"><b>' + test['Cafe'] + '</b></td><td width="70%">' + test['Food'] + '</td><td width="10%" style="text-align:right;">$' + test['Price'] + '</td></tr>';
-					}
-					
-				myHTML = myHTML + '</table></div>';
-				iDiv.innerHTML = myHTML;
-			  }
-			});
-		});  
-		</script>
+		
+			<div data-role="navbar" data-grid="d" style="width:99%">
+				<ul>
+					<li><a href="#" class="ui-btn-active">Mon</a></li>
+					<li><a href="#">Tue</a></li>
+					<li><a href="#">Wed</a></li>
+					<li><a href="#">Thu</a></li>
+					<li><a href="#" style="border-right-width: 1px;">Fri</a></li>
+				</ul>
+			</div><!-- /navbar -->
 
 			<center style="font-size:10px; font-family:Tahoma; color: gray;">Developed by Team BradyRocks</span>
 			<div class="push"></div>
+		</div>
+		<div class="footer">
+			<p>Copyright (c) 2014</p>
 		</div>
 	</div>
 </div>
